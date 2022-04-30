@@ -11,13 +11,26 @@ void ofApp::setup(){
     for (int i = 0; i < 100; i++) {
         population.emplace_back(ofRandom(width), ofRandom(height), width, height);
     }
+    population.emplace_back(width / 2, height / 2, width, height, InfectionState::INFECTED);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    // update position and state of population
+    // update position of population
     for (auto& person : population) {
         person.update();
+    }
+
+    // update states
+    int infectionRadius = 10;
+    for (int i = 0; i < population.size(); i++) {
+        for (int j = i + 1; j < population.size(); j++) {
+            ofVec2f pos_i = population[i].getPosition();
+            ofVec2f pos_j = population[j].getPosition();
+            if (ofDist(pos_i.x, pos_i.y, pos_j.x, pos_j.y) < infectionRadius) {
+                Person::contact(population[i], population[j]);
+            }
+        }
     }
 
     // draw population into fbo

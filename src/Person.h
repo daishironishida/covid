@@ -10,15 +10,31 @@ enum class InfectionState {
 
 class Person {
 public:
-    Person(int x, int y, int width, int height) : pos(x, y), worldWidth(width), worldHeight(height) {};
+    Person(int x, int y, int width, int height, InfectionState initialState = InfectionState::SUSCEPTIBLE) : pos(x, y), worldWidth(width), worldHeight(height), state(initialState) {};
 
     void update() {
+        // update position
         float dx = ofRandom(-1, 1);
         float dy = ofRandom(-1, 1);
         pos += ofVec2f(dx, dy);
 
         pos.x = ofClamp(pos.x, 0, worldWidth);
         pos.y = ofClamp(pos.y, 0, worldHeight);
+
+        // update state
+    }
+
+    // two people come into contact with each other
+    static void contact(Person &a, Person &b) {
+        a.contact(b);
+        b.contact(a);
+    }
+
+    // this comes into contact with other
+    void contact(const Person &other) {
+        if (this->isSusceptible() && other.isInfected()) {
+            state = InfectionState::INFECTED;
+        }
     }
 
     void draw() const {
@@ -27,13 +43,23 @@ public:
         ofDrawCircle(pos, 2);
         ofPopStyle();
     }
+
+    ofVec2f getPosition() const {
+        return pos;
+    }
+    bool isSusceptible() const {
+        return state == InfectionState::SUSCEPTIBLE;
+    }
+    bool isInfected() const {
+        return state == InfectionState::INFECTED;
+    }
     
 private:
     ofVec2f pos;
-    InfectionState state = InfectionState::SUSCEPTIBLE;
+    InfectionState state;
     int worldWidth, worldHeight;
     
-    ofColor getColor(InfectionState state) const {
+    static ofColor getColor(InfectionState state) {
         switch(state) {
             case InfectionState::SUSCEPTIBLE:
                 return ofColor(0, 255, 255);
