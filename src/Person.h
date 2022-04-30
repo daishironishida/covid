@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Mover.h"
 #include "Parameters.h"
 
 enum class InfectionState {
@@ -11,19 +12,9 @@ enum class InfectionState {
 
 class Person {
 public:
-    Person(int x, int y, int width, int height, InfectionState initialState = InfectionState::SUSCEPTIBLE) : pos(x, y), worldWidth(width), worldHeight(height), state(initialState) {};
+    Person(int x, int y, int width, int height, InfectionState initialState = InfectionState::SUSCEPTIBLE) : pos(x, y), mover(width, height), state(initialState) {};
 
-    void update() {
-        // update position
-        float dx = ofRandom(-params->maxMovement, params->maxMovement);
-        float dy = ofRandom(-params->maxMovement, params->maxMovement);
-        pos += ofVec2f(dx, dy);
-
-        pos.x = ofClamp(pos.x, 0, worldWidth);
-        pos.y = ofClamp(pos.y, 0, worldHeight);
-
-        // update state
-    }
+    void update();
 
     // two people come into contact with each other
     static void contact(Person &a, Person &b) {
@@ -31,12 +22,8 @@ public:
         b.contact(a);
     }
 
-    // this comes into contact with other
-    void contact(const Person &other) {
-        if (this->isSusceptible() && other.isInfected()) {
-            state = InfectionState::INFECTED;
-        }
-    }
+    // comes into contact with other
+    void contact(const Person &other);
 
     void draw() const {
         ofPushStyle();
@@ -57,8 +44,9 @@ public:
     
 private:
     ofVec2f pos;
+    Mover mover;
     InfectionState state;
-    int worldWidth, worldHeight;
+
     Parameters *params = Parameters::getInstance();
     
     static ofColor getColor(InfectionState state) {
