@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(0);
+    gui.setup();
 
     world.allocate(params->worldWidth, params->worldHeight, GL_RGBA);
 
@@ -53,8 +54,20 @@ void ofApp::draw(){
         drawWidth = windowHeight * world.getWidth() / world.getHeight();
         drawHeight = windowHeight;
     }
-
     world.draw(0, 0, drawWidth, drawHeight);
+
+    // draw gui
+    drawGui();
+}
+
+//--------------------------------------------------------------
+void ofApp::drawGui() {
+    gui.begin();
+    if (ImGui::Begin("Settings")) {
+        params->drawGui();
+        ImGui::End();
+    }
+    gui.end();
 }
 
 //--------------------------------------------------------------

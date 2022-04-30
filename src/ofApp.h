@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxImgui.h"
 
 #include "Parameters.h"
 #include "Person.h"
@@ -25,10 +26,14 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 private:
+    ofFbo world;
     vector<Person> population;
 
+    // paramters
     Parameters *params = Parameters::getInstance();
 
-    ofFbo world;
+    // GUI
+    ofxImGui::Gui gui;
+    void drawGui();
 		
 };
