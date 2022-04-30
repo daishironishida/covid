@@ -5,16 +5,30 @@ void ofApp::setup(){
     ofSetBackgroundColor(0);
     gui.setup();
 
-    world.allocate(params->worldWidth, params->worldHeight, GL_RGBA);
-
-    for (int i = 0; i < 100; i++) {
-        population.emplace_back(ofRandom(params->worldWidth), ofRandom(params->worldHeight), params->worldWidth, params->worldHeight);
-    }
-    population.emplace_back(params->worldWidth / 2, params->worldHeight / 2, params->worldWidth, params->worldHeight, InfectionState::INFECTED);
+    createWorld();
 }
 
 //--------------------------------------------------------------
+void ofApp::createWorld() {
+    world.allocate(params->worldWidth, params->worldHeight, GL_RGBA);
+
+    population.clear();
+    for (int i = 0; i < params->initialPopulation; i++) {
+        InfectionState state = InfectionState::SUSCEPTIBLE;
+        if (ofRandom(1) < params->initialInfectionRate) {
+            state = InfectionState::INFECTED;
+        }
+        population.emplace_back(ofRandom(params->worldWidth), ofRandom(params->worldHeight), params->worldWidth, params->worldHeight, state);
+    }
+}
+    
+//--------------------------------------------------------------
 void ofApp::update(){
+    // reset world
+    if (params->resetWorld) {
+        createWorld();
+    }
+
     // update position of population
     for (auto& person : population) {
         person.update();
