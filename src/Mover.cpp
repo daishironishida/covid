@@ -1,10 +1,12 @@
 #include "Mover.h"
 
 void Mover::update(ofVec2f &position) {
-    float dx = ofRandom(-params->maxMovement, params->maxMovement);
-    float dy = ofRandom(-params->maxMovement, params->maxMovement);
-    position += ofVec2f(dx, dy);
-    
+    position += velocity;
     position.x = ofClamp(position.x, 0, worldWidth);
     position.y = ofClamp(position.y, 0, worldHeight);
+
+    if (ofRandom(1) < params->directionChangeProbability) {
+        velocity.x = ofRandom(-params->maxMovement, params->maxMovement);
+        velocity.y = ofRandom(-params->maxMovement, params->maxMovement);
+    }
 }

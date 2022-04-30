@@ -5,6 +5,7 @@ public:
     int worldWidth = 1000;
     int worldHeight = 1000;
     float maxMovement = 3;
+    float directionChangeProbability = 0.1;
     float infectionRadius = 10;
 
     void drawGui();
