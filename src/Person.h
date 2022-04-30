@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Parameters.h"
 
 enum class InfectionState {
     SUSCEPTIBLE,
@@ -14,8 +15,8 @@ public:
 
     void update() {
         // update position
-        float dx = ofRandom(-1, 1);
-        float dy = ofRandom(-1, 1);
+        float dx = ofRandom(-params->maxMovement, params->maxMovement);
+        float dy = ofRandom(-params->maxMovement, params->maxMovement);
         pos += ofVec2f(dx, dy);
 
         pos.x = ofClamp(pos.x, 0, worldWidth);
@@ -58,6 +59,7 @@ private:
     ofVec2f pos;
     InfectionState state;
     int worldWidth, worldHeight;
+    Parameters *params = Parameters::getInstance();
     
     static ofColor getColor(InfectionState state) {
         switch(state) {

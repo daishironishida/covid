@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 
+#include "Parameters.h"
 #include "Person.h"
 
 class ofApp : public ofBaseApp{
@@ -25,6 +26,8 @@ class ofApp : public ofBaseApp{
 
 private:
     vector<Person> population;
+
+    Parameters *params = Parameters::getInstance();
 
     ofFbo world;
 		
