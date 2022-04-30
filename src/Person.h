@@ -10,6 +10,12 @@ enum class InfectionState {
 
 class Person {
 public:
+    void update() {
+        float dx = ofRandom(-1, 1);
+        float dy = ofRandom(-1, 1);
+        pos += ofPoint(dx, dy, 0);
+    }
+
     void draw() const {
         ofPushStyle();
         ofSetColor(getColor(state));
