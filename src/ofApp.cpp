@@ -4,21 +4,43 @@
 void ofApp::setup(){
     ofSetBackgroundColor(0);
 
-    population.emplace_back();
+    world.allocate(1000, 1000, GL_RGBA);
+
+    population.emplace_back(ofGetWindowWidth(), ofGetWindowHeight());
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    // update position and state of population
     for (auto& person : population) {
         person.update();
     }
+
+    // draw population into fbo
+    world.begin();
+    ofClear(255,255,255, 0);
+    for (const auto& person : population) {
+        person.draw();
+    }
+    world.end();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for (const auto& person : population) {
-        person.draw();
+    // draw fbo (keep aspect ratio intact)
+    int windowWidth = ofGetWindowWidth();
+    int windowHeight = ofGetWindowHeight();
+
+    int drawWidth, drawHeight;
+    if (windowWidth * world.getHeight() < windowHeight * world.getWidth()) {
+        drawWidth = windowWidth;
+        drawHeight = windowWidth * world.getHeight() / world.getWidth();
+    } else {
+        drawWidth = windowHeight * world.getWidth() / world.getHeight();
+        drawHeight = windowHeight;
     }
+
+    world.draw(0, 0, drawWidth, drawHeight);
 }
 
 //--------------------------------------------------------------

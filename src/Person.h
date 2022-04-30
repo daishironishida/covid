@@ -10,10 +10,15 @@ enum class InfectionState {
 
 class Person {
 public:
+    Person(int width, int height) : worldWidth(width), worldHeight(height) {};
+
     void update() {
         float dx = ofRandom(-1, 1);
         float dy = ofRandom(-1, 1);
         pos += ofPoint(dx, dy, 0);
+
+        pos.x = ofClamp(pos.x, 0, worldWidth);
+        pos.y = ofClamp(pos.y, 0, worldHeight);
     }
 
     void draw() const {
@@ -25,7 +30,8 @@ public:
     
 private:
     ofPoint pos;
-    InfectionState state;
+    InfectionState state = InfectionState::SUSCEPTIBLE;
+    int worldWidth, worldHeight;
     
     ofColor getColor(InfectionState state) const {
         switch(state) {

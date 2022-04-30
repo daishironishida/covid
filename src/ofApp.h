@@ -25,5 +25,7 @@ class ofApp : public ofBaseApp{
 
 private:
     vector<Person> population;
+
+    ofFbo world;
 		
 };
