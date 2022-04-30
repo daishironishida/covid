@@ -10,12 +10,12 @@ enum class InfectionState {
 
 class Person {
 public:
-    Person(int width, int height) : worldWidth(width), worldHeight(height) {};
+    Person(int x, int y, int width, int height) : pos(x, y), worldWidth(width), worldHeight(height) {};
 
     void update() {
         float dx = ofRandom(-1, 1);
         float dy = ofRandom(-1, 1);
-        pos += ofPoint(dx, dy, 0);
+        pos += ofVec2f(dx, dy);
 
         pos.x = ofClamp(pos.x, 0, worldWidth);
         pos.y = ofClamp(pos.y, 0, worldHeight);
@@ -29,7 +29,7 @@ public:
     }
     
 private:
-    ofPoint pos;
+    ofVec2f pos;
     InfectionState state = InfectionState::SUSCEPTIBLE;
     int worldWidth, worldHeight;
     

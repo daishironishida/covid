@@ -4,9 +4,13 @@
 void ofApp::setup(){
     ofSetBackgroundColor(0);
 
-    world.allocate(1000, 1000, GL_RGBA);
+    int width = 1000;
+    int height = 1000;
+    world.allocate(width, height, GL_RGBA);
 
-    population.emplace_back(ofGetWindowWidth(), ofGetWindowHeight());
+    for (int i = 0; i < 100; i++) {
+        population.emplace_back(ofRandom(width), ofRandom(height), width, height);
+    }
 }
 
 //--------------------------------------------------------------
