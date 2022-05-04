@@ -1,0 +1,6 @@
+# covid
+
+## Requirements
+
+- openframeworks
+- ofxImgui
