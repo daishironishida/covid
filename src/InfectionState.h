@@ -5,10 +5,10 @@
 class InfectionState {
 public:
     enum State {
-        SUSCEPTIBLE, // not vaccinated, not infected
-        VACCINATED,  // vaccinated, not infected
-        LATENT,      // infected, no symptoms
-        SYMPTOMATIC, // infected, symptoms
+        UNVACCINATED, // not vaccinated, not infected
+        VACCINATED,   // vaccinated, not infected
+        LATENT,       // infected, no symptoms
+        SYMPTOMATIC,  // infected, symptoms
         RECOVERED,
     };
     InfectionState() = default;
@@ -17,7 +17,7 @@ public:
     constexpr bool operator!=(InfectionState s) const { return state != s.state; }
 
     bool isSusceptible() const {
-        return state == InfectionState::SUSCEPTIBLE || state == InfectionState::VACCINATED;
+        return state == InfectionState::UNVACCINATED || state == InfectionState::VACCINATED;
     }
     bool isInfected() const {
         return state == InfectionState::LATENT || state == InfectionState::SYMPTOMATIC;
@@ -28,7 +28,7 @@ public:
 
     ofColor getColor() const {
         switch(state) {
-            case InfectionState::SUSCEPTIBLE:
+            case InfectionState::UNVACCINATED:
                 return ofColor(0, 255, 255);
             case InfectionState::VACCINATED:
                 return ofColor(0, 255, 0);

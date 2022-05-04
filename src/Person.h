@@ -8,7 +8,7 @@
 
 class Person {
 public:
-    Person(int x, int y, int width, int height, InfectionState initialState = InfectionState::SUSCEPTIBLE) : pos(x, y), mover(width, height), state(initialState) {};
+    Person(int x, int y, int width, int height, InfectionState initialState) : pos(x, y), mover(width, height), state(initialState) {};
 
     void update();
 

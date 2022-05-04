@@ -14,7 +14,7 @@ void ofApp::createWorld() {
 
     population.clear();
     for (int i = 0; i < params->initialPopulation; i++) {
-        InfectionState state = InfectionState::SUSCEPTIBLE;
+        InfectionState state = InfectionState::UNVACCINATED;
         if (ofRandom(1) < params->initialInfectionRate) {
             state = InfectionState::LATENT;
         }
