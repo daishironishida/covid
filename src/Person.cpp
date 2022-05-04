@@ -16,7 +16,14 @@ void Person::updateState() {
         return;
     }
 
-    // chance to catch virus is susceptible
+    // chance to get vaccination
+    if (state == InfectionState::UNVACCINATED) {
+        if (ofRandom(1) < params->vaccinationProbability) {
+            state = InfectionState::VACCINATED;
+        }
+    }
+
+    // chance to catch virus if susceptible
     if (isSusceptible()) {
         float thresh = params->infectionProbability;
         if (state == InfectionState::VACCINATED) {
