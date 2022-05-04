@@ -20,11 +20,11 @@ void Parameters::drawGui() {
         ImGui::SliderFloat("Max movement", &maxMovement, 0, 10);
         ImGui::SliderFloat("Direction change probability", &maxMovement, 0, 1);
         ImGui::SliderFloat("Infection Radius", &infectionRadius, 0, 100);
-        ImGui::SliderFloat("Vacciation Probability", &vaccinationProbability, 0, 1);
+        ImGui::SliderFloat("Vacciation Probability", &vaccinationProbability, 0, 0.1);
         ImGui::SliderFloat("Infection Probability (not vaccinated)", &infectionProbability, 0, 1);
         ImGui::SliderFloat("Infection Probability (vaccinated)", &infectionProbabilityVaccinated, 0, 1);
-        ImGui::SliderFloat("Symptom Probability", &symptomProbability, 0, 1);
-        ImGui::SliderFloat("Recover Probability", &recoverProbability, 0, 1);
+        ImGui::SliderFloat("Symptom Probability", &symptomProbability, 0, 0.1);
+        ImGui::SliderFloat("Recover Probability", &recoverProbability, 0, 0.1);
         
         ImGui::TreePop();
     }
