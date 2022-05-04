@@ -1,14 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+
+#include "InfectionState.h"
 #include "Mover.h"
 #include "Parameters.h"
-
-enum class InfectionState {
-    SUSCEPTIBLE,
-    INFECTED,
-    RECOVERED,
-};
 
 class Person {
 public:
@@ -27,7 +23,7 @@ public:
 
     void draw() const {
         ofPushStyle();
-        ofSetColor(getColor(state));
+        ofSetColor(state.getColor());
         ofDrawCircle(pos, 2);
         ofPopStyle();
     }
@@ -36,30 +32,16 @@ public:
         return pos;
     }
     bool isSusceptible() const {
-        return state == InfectionState::SUSCEPTIBLE;
+        return state.isSusceptible();
     }
     bool isInfected() const {
-        return state == InfectionState::INFECTED;
+        return state.isInfected();
     }
-    
+
 private:
     ofVec2f pos;
     Mover mover;
     InfectionState state;
 
     Parameters *params = Parameters::getInstance();
-    
-    static ofColor getColor(InfectionState state) {
-        switch(state) {
-            case InfectionState::SUSCEPTIBLE:
-                return ofColor(0, 255, 255);
-            case InfectionState::INFECTED:
-                return ofColor(255, 0, 0);
-            case InfectionState::RECOVERED:
-                return ofColor(0, 0, 255);
-            default:
-                ofLogWarning() << "Invalid state: " << static_cast<int>(state);
-                return ofColor(255, 255, 255);
-        }
-    }
 };

@@ -51,6 +51,7 @@
 		64438C8902B287DA10BCD63B /* ofxImGuiLoggerChannel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxImGuiLoggerChannel.cpp; path = ../../../addons/ofxImGui/src/ofxImGuiLoggerChannel.cpp; sourceTree = SOURCE_ROOT; };
 		65152F5D964F26915DE8E206 /* ImHelpers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ImHelpers.h; path = ../../../addons/ofxImGui/src/ImHelpers.h; sourceTree = SOURCE_ROOT; };
 		6CF9B1FD213484DDDB7AE362 /* imgui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = imgui.cpp; path = ../../../addons/ofxImGui/libs/imgui/src/imgui.cpp; sourceTree = SOURCE_ROOT; };
+		7E0032AC28222C0E00E23235 /* InfectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfectionState.h; sourceTree = "<group>"; };
 		7EA761A7281D1B7A00AF5969 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		7EA761A8281D489700AF5969 /* Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parameters.h; sourceTree = "<group>"; };
 		7EA761A9281D524A00AF5969 /* Person.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Person.cpp; sourceTree = "<group>"; };
@@ -656,6 +657,7 @@
 				7EA761AB281D541000AF5969 /* Mover.cpp */,
 				7EA761AE281D543100AF5969 /* Mover.h */,
 				7EA761AF281D560900AF5969 /* Parameters.cpp */,
+				7E0032AC28222C0E00E23235 /* InfectionState.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
