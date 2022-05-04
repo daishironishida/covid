@@ -13,6 +13,8 @@ public:
     };
     InfectionState() = default;
     constexpr InfectionState(State s) : state(s) { }
+    constexpr bool operator==(InfectionState s) const { return state == s.state; }
+    constexpr bool operator!=(InfectionState s) const { return state != s.state; }
 
     bool isSusceptible() const {
         return state == InfectionState::SUSCEPTIBLE || state == InfectionState::VACCINATED;

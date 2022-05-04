@@ -44,4 +44,6 @@ private:
     InfectionState state;
 
     Parameters *params = Parameters::getInstance();
+
+    void updateState();
 };
