@@ -6,6 +6,7 @@
 void Parameters::drawGui() {
     if (ImGui::TreeNode("Static")) {
         ImGui::SliderInt("Initial population", &initialPopulation, 1, 10000);
+        ImGui::SliderFloat("Initial vaccination rate", &initialVaccinationRate, 0, 1);
         ImGui::SliderFloat("Initial infection rate", &initialInfectionRate, 0, 1);
         array<int, 2> worldSize = {worldWidth, worldHeight};
         ImGui::InputInt2("World size", &worldSize[0]);

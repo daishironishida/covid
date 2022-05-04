@@ -4,6 +4,7 @@ class Parameters {
 public:
     // static
     int initialPopulation = 100;
+    float initialVaccinationRate = 0.1;
     float initialInfectionRate = 0.01;
     int worldWidth = 1000;
     int worldHeight = 1000;
