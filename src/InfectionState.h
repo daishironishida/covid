@@ -29,7 +29,7 @@ public:
     ofColor getColor() const {
         switch(state) {
             case InfectionState::UNVACCINATED:
-                return ofColor(0, 255, 255);
+                return ofColor(255, 255, 255);
             case InfectionState::VACCINATED:
                 return ofColor(0, 255, 0);
             case InfectionState::LATENT:
