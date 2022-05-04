@@ -42,7 +42,7 @@ private:
     ofVec2f pos;
     Mover mover;
     InfectionState state;
-    int numContacts; // number of times person was in contact with infected person
+    int numContacts = 0; // number of times person was in contact with infected person
 
     Parameters *params = Parameters::getInstance();
 
