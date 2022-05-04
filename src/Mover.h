@@ -5,11 +5,13 @@
 
 class Mover {
 public:
-    Mover(int width, int height) : worldWidth(width), worldHeight(height) {};
+    Mover(int width, int height);
     void update(ofVec2f &position);
 
 private:
     int worldWidth, worldHeight;
     ofVec2f velocity;
     Parameters *params = Parameters::getInstance();
+
+    void setVelocity();
 };
