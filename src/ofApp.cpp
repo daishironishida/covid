@@ -16,7 +16,7 @@ void ofApp::createWorld() {
     for (int i = 0; i < params->initialPopulation; i++) {
         InfectionState state = InfectionState::SUSCEPTIBLE;
         if (ofRandom(1) < params->initialInfectionRate) {
-            state = InfectionState::INFECTED;
+            state = InfectionState::LATENT;
         }
         population.emplace_back(ofRandom(params->worldWidth), ofRandom(params->worldHeight), params->worldWidth, params->worldHeight, state);
     }
