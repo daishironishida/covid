@@ -12,6 +12,8 @@ public:
     float maxMovement = 3;
     float directionChangeProbability = 0.1;
     float infectionRadius = 10;
+    float infectionProbability = 0.1;
+    float infectionProbabilityVaccinated = 0.01;
     float symptomProbability = 0.03;
     float recoverProbability = 0.01;
 

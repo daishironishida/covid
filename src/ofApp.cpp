@@ -29,12 +29,12 @@ void ofApp::update(){
         createWorld();
     }
 
-    // update position of population
+    // update position/state of population
     for (auto& person : population) {
         person.update();
     }
 
-    // update states
+    // update contact information
     for (int i = 0; i < population.size(); i++) {
         for (int j = i + 1; j < population.size(); j++) {
             ofVec2f pos_i = population[i].getPosition();
