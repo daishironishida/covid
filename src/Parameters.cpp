@@ -3,6 +3,10 @@
 #include "ofMain.h"
 #include "ofxImGui.h"
 
+Parameters::Parameters() {
+    paramsPath = ofToDataPath("params.json");
+}
+
 void Parameters::drawGui() {
     if (ImGui::TreeNode("Static")) {
         ImGui::SliderInt("Initial population", &initialPopulation, 1, 10000);
@@ -30,4 +34,16 @@ void Parameters::drawGui() {
     }
 
     resetWorld = ImGui::Button("Reset");
+}
+
+void Parameters::save() {
+    std::ofstream os(paramsPath);
+    cereal::JSONOutputArchive archive( os );
+    archive(cereal::make_nvp("params", *this));
+}
+
+void Parameters::load() {
+    std::ifstream is(paramsPath);
+    cereal::JSONInputArchive archive( is );
+    archive(cereal::make_nvp("params", *this));
 }

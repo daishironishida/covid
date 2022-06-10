@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cereal/cereal.hpp>
+#include <cereal/archives/json.hpp>
+
 class Parameters {
 public:
     // static
@@ -28,11 +31,30 @@ public:
         static Parameters instance;
         return &instance;
     }
+
+    // serialize
+    template <class Archive>
+    void serialize( Archive & ar )
+    {
+        ar(
+           CEREAL_NVP(initialPopulation), CEREAL_NVP(initialVaccinationRate), CEREAL_NVP(initialInfectionRate),
+           CEREAL_NVP(worldWidth), CEREAL_NVP(worldHeight),
+           CEREAL_NVP(maxMovement), CEREAL_NVP(directionChangeProbability),
+           CEREAL_NVP(infectionRadius),
+           CEREAL_NVP(vaccinationProbability), CEREAL_NVP(infectionProbability), CEREAL_NVP(infectionProbabilityVaccinated),
+           CEREAL_NVP(symptomProbability), CEREAL_NVP(recoverProbability)
+         );
+    }
+    void save();
+    void load();
+    
 private:
-    Parameters() = default;
+    Parameters();
 
     Parameters(const Parameters&) = delete;
     Parameters& operator=(const Parameters&) = delete;
     Parameters(Parameters&&) = delete;
     Parameters& operator=(Parameters&&) = delete;
+
+    std::string paramsPath;
 };
