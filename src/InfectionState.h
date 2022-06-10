@@ -22,6 +22,9 @@ public:
     bool isInfected() const {
         return state == InfectionState::LATENT || state == InfectionState::SYMPTOMATIC;
     }
+    bool isSymptomatic() const {
+        return state == InfectionState::SYMPTOMATIC;
+    }
     void infect() {
         state = InfectionState::LATENT;
     }

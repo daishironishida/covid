@@ -21,7 +21,8 @@ void Parameters::drawGui() {
     }
     
     if (ImGui::TreeNode("Dynamic")) {
-        ImGui::SliderFloat("Max movement", &maxMovement, 0, 10);
+        ImGui::SliderFloat("Max movement (healthy)", &maxMovement, 0, 10);
+        ImGui::SliderFloat("Max movement (symptomatic)", &maxMovementSymptomatic, 0, 10);
         ImGui::SliderFloat("Direction change probability", &directionChangeProbability, 0, 1);
         ImGui::SliderFloat("Infection Radius", &infectionRadius, 0, 100);
         ImGui::SliderFloat("Vacciation Probability", &vaccinationProbability, 0, 0.1);

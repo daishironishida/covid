@@ -14,6 +14,7 @@ public:
 
     // dynamic
     float maxMovement = 3;
+    float maxMovementSymptomatic = 0.3;
     float directionChangeProbability = 0.1;
     float infectionRadius = 10;
     float vaccinationProbability = 0.001;
@@ -39,7 +40,7 @@ public:
         ar(
            CEREAL_NVP(initialPopulation), CEREAL_NVP(initialVaccinationRate), CEREAL_NVP(initialInfectionRate),
            CEREAL_NVP(worldWidth), CEREAL_NVP(worldHeight),
-           CEREAL_NVP(maxMovement), CEREAL_NVP(directionChangeProbability),
+           CEREAL_NVP(maxMovement), CEREAL_NVP(maxMovementSymptomatic), CEREAL_NVP(directionChangeProbability),
            CEREAL_NVP(infectionRadius),
            CEREAL_NVP(vaccinationProbability), CEREAL_NVP(infectionProbability), CEREAL_NVP(infectionProbabilityVaccinated),
            CEREAL_NVP(symptomProbability), CEREAL_NVP(recoverProbability)

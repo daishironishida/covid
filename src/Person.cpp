@@ -2,7 +2,7 @@
 
 void Person::update() {
     // update position
-    mover.update(pos);
+    mover.update(pos, state.isSymptomatic());
 
     // update state
     updateState();

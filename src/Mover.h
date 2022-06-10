@@ -6,12 +6,12 @@
 class Mover {
 public:
     Mover(int width, int height);
-    void update(ofVec2f &position);
+    void update(ofVec2f &position, bool symptomatic=false);
 
 private:
     int worldWidth, worldHeight;
     ofVec2f velocity;
     Parameters *params = Parameters::getInstance();
 
-    void setVelocity();
+    void setVelocity(bool symptomatic);
 };
