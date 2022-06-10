@@ -5,6 +5,7 @@ void ofApp::setup(){
     ofSetBackgroundColor(0);
     gui.setup();
 
+    params->load();
     createWorld();
 }
 
