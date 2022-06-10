@@ -1,3 +1,6 @@
 [submodule "3rdparty/cereal"]
 	path = 3rdparty/cereal
 	url = https://github.com/USCiLab/cereal
+[submodule "local_addons/ofxImGui"]
+	path = local_addons/ofxImGui
+	url = https://github.com/jvcleave/ofxImGui
