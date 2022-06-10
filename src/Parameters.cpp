@@ -38,12 +38,26 @@ void Parameters::drawGui() {
 
 void Parameters::save() {
     std::ofstream os(paramsPath);
-    cereal::JSONOutputArchive archive( os );
-    archive(cereal::make_nvp("params", *this));
+    try {
+        cereal::JSONOutputArchive archive( os );
+        archive(cereal::make_nvp("params", *this));
+    } catch (std::exception &e) {
+        ofLogWarning() << "Could not save params to " << paramsPath;
+        ofLogWarning() << e.what();
+        return;
+    }
+    ofLogNotice() << "Saved params to " << paramsPath;
 }
 
 void Parameters::load() {
     std::ifstream is(paramsPath);
-    cereal::JSONInputArchive archive( is );
-    archive(cereal::make_nvp("params", *this));
+    try {
+        cereal::JSONInputArchive archive( is );
+        archive(cereal::make_nvp("params", *this));
+    } catch (std::exception &e) {
+        ofLogWarning() << "Could not load params from " << paramsPath;
+        ofLogWarning() << e.what();
+        return;
+    }
+    ofLogNotice() << "Loaded params from " << paramsPath;
 }
