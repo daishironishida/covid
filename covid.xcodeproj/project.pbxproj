@@ -652,11 +652,11 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				7EA761AF281D560900AF5969 /* Parameters.cpp */,
 				7EA761A8281D489700AF5969 /* Parameters.h */,
 				7EA761A9281D524A00AF5969 /* Person.cpp */,
 				7EA761AB281D541000AF5969 /* Mover.cpp */,
 				7EA761AE281D543100AF5969 /* Mover.h */,
-				7EA761AF281D560900AF5969 /* Parameters.cpp */,
 				7E0032AC28222C0E00E23235 /* InfectionState.h */,
 			);
 			path = src;
@@ -838,6 +838,7 @@
 					../../../addons/ofxImGui/libs/imgui,
 					../../../addons/ofxImGui/libs/imgui/src,
 					../../../addons/ofxImGui/src,
+					3rdparty/cereal/include,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -945,6 +946,7 @@
 					../../../addons/ofxImGui/libs/imgui,
 					../../../addons/ofxImGui/libs/imgui/src,
 					../../../addons/ofxImGui/src,
+					3rdparty/cereal/include,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -978,6 +980,7 @@
 					../../../addons/ofxImGui/libs/imgui,
 					../../../addons/ofxImGui/libs/imgui/src,
 					../../../addons/ofxImGui/src,
+					3rdparty/cereal/include,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
