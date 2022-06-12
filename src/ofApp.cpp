@@ -41,12 +41,7 @@ void ofApp::update(){
     }
 
     // update contact information
-    std::vector<ofVec2f> positions;
-    positions.reserve(population.size());
-    for (auto &person : population) {
-        positions.emplace_back(person.getPosition());
-    }
-    KdTree<ofVec2f> points(positions.begin(), positions.end());
+    KdTree<Person> points(population.begin(), population.end());
     for (int i = 0; i < population.size(); i++) {
         for (int j = i + 1; j < population.size(); j++) {
             ofVec2f pos_i = population[i].getPosition();
