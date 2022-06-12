@@ -29,4 +29,23 @@ public:
 
         person = std::make_shared<T>(*median);
     }
+
+    void findPointsInRange(T base, float range, std::vector<T> &result, int depth = 0) {
+        if (isLeaf()) {
+            return;
+        }
+        int axis = depth % person->getPosition().DIM;
+        float personPos = person->getPosition()[axis];
+        float basePos = base.getPosition()[axis];
+
+        if (basePos <= personPos || basePos - personPos < range) {
+            leftChild->findPointsInRange(base, range, result, depth+1);
+        }
+        if (basePos > personPos || personPos - basePos < range) {
+            rightChild->findPointsInRange(base, range, result, depth+1);
+        }
+        if (base.getPosition().squareDistance(person->getPosition()) < range * range) {
+            result.push_back(*person);
+        }
+    }
 };

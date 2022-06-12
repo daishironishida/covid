@@ -42,13 +42,11 @@ void ofApp::update(){
 
     // update contact information
     KdTree<Person> points(population.begin(), population.end());
-    for (int i = 0; i < population.size(); i++) {
-        for (int j = i + 1; j < population.size(); j++) {
-            ofVec2f pos_i = population[i].getPosition();
-            ofVec2f pos_j = population[j].getPosition();
-            if (ofDist(pos_i.x, pos_i.y, pos_j.x, pos_j.y) < params->infectionRadius) {
-                Person::contact(population[i], population[j]);
-            }
+    for (auto &person : population) {
+        std::vector<Person> inRange;
+        points.findPointsInRange(person, params->infectionRadius, inRange);
+        for (auto &other : inRange) {
+            Person::contact(person, other);
         }
     }
 
