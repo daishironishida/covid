@@ -1,5 +1,7 @@
 #include "ofApp.h"
 
+#include "util/KdTree.h"
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(0);
@@ -39,6 +41,12 @@ void ofApp::update(){
     }
 
     // update contact information
+    std::vector<ofVec2f> positions;
+    positions.reserve(population.size());
+    for (auto &person : population) {
+        positions.emplace_back(person.getPosition());
+    }
+    KdTree<ofVec2f> points(positions.begin(), positions.end());
     for (int i = 0; i < population.size(); i++) {
         for (int j = i + 1; j < population.size(); j++) {
             ofVec2f pos_i = population[i].getPosition();
