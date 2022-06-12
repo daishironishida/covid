@@ -41,7 +41,7 @@ void ofApp::update(){
     }
 
     // update contact information
-    KdTree<Person> points(population.begin(), population.end());
+    KdTree points(population.begin(), population.end());
     for (auto &person : population) {
         std::vector<Person> inRange;
         points.findPointsInRange(person, params->infectionRadius, inRange);
