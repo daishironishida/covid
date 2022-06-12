@@ -18,10 +18,10 @@ public:
     float directionChangeProbability = 0.1;
     float infectionRadius = 10;
     float vaccinationProbability = 0.001;
-    float infectionProbability = 0.1;
-    float infectionProbabilityVaccinated = 0.01;
-    float symptomProbability = 0.03;
-    float recoverProbability = 0.01;
+    float infectionProbability = 0.01;
+    float infectionProbabilityVaccinated = 0.001;
+    float symptomProbability = 0.003;
+    float recoverProbability = 0.001;
 
     // button
     bool resetWorld = false;

@@ -3,6 +3,15 @@
 #include "ofMain.h"
 #include "ofxImGui.h"
 
+namespace ImGui {
+bool SliderFloatPercentage(const char* label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f) {
+    float percentage = *v * 100;
+    bool isModified = ImGui::SliderFloat(label, &percentage, v_min, v_max, format, power);
+    *v = percentage / 100;
+    return isModified;
+}
+}
+
 Parameters::Parameters() {
     paramsPath = ofToDataPath("params.json");
 }
@@ -23,13 +32,13 @@ void Parameters::drawGui() {
     if (ImGui::TreeNode("Dynamic")) {
         ImGui::SliderFloat("Max movement (healthy)", &maxMovement, 0, 10);
         ImGui::SliderFloat("Max movement (symptomatic)", &maxMovementSymptomatic, 0, 10);
-        ImGui::SliderFloat("Direction change probability", &directionChangeProbability, 0, 1);
+        ImGui::SliderFloatPercentage("Direction change probability %", &directionChangeProbability, 0, 100);
         ImGui::SliderFloat("Infection Radius", &infectionRadius, 0, 100);
-        ImGui::SliderFloat("Vacciation Probability", &vaccinationProbability, 0, 0.1);
-        ImGui::SliderFloat("Infection Probability (not vaccinated)", &infectionProbability, 0, 1);
-        ImGui::SliderFloat("Infection Probability (vaccinated)", &infectionProbabilityVaccinated, 0, 1);
-        ImGui::SliderFloat("Symptom Probability", &symptomProbability, 0, 0.1);
-        ImGui::SliderFloat("Recover Probability", &recoverProbability, 0, 0.1);
+        ImGui::SliderFloatPercentage("Vacciation Probability %", &vaccinationProbability, 0, 1);
+        ImGui::SliderFloatPercentage("Infection Probability (not vaccinated) %", &infectionProbability, 0, 1);
+        ImGui::SliderFloatPercentage("Infection Probability (vaccinated) %", &infectionProbabilityVaccinated, 0, 1);
+        ImGui::SliderFloatPercentage("Symptom Probability %", &symptomProbability, 0, 1);
+        ImGui::SliderFloatPercentage("Recover Probability %", &recoverProbability, 0, 1);
         
         ImGui::TreePop();
     }
